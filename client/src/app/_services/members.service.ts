@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
+import { Photo } from '../_models/photo';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,13 @@ export class MembersService {
         this.members[index] = member;
       })
     )
+  }
+
+  setMainPhoto(photoId: number){
+    return this.http.put(this.baseUrl + 'users/set-main-photo/' + photoId, {});
+  }
+
+  deletePhoto(photoId: number){
+    return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
   }
 }
